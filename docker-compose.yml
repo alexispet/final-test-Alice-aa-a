@@ -1,16 +1,16 @@
 services:
   express:
-    build:
-      context: .
-      #      choose image : next
-      target: express
+    image: ghcr.io/alexispet/final-test-alice-aa-a/express:main
+#      context: .
+#      #      choose image : next
+#      target: express
     environment:
       #      stable or unstable
       NODE_ENV: development
-      MYSQL_RANDOM_ROOT_PASSWORD: yes
-      MYSQL_DATABASE: express
-      MYSQL_USER: express
-      MYSQL_PASSWORD: express
+      DB_HOST: db
+      DB_USER: expressuser
+      DB_PASSWORD: expresspassword
+      DB_DATABASE: expressdb
     ports:
       - "3000:3000"
     depends_on:
@@ -18,18 +18,17 @@ services:
         condition: service_healthy
     volumes:
       - ".:/app"
-    command: [ "npm", "run", "start" ]
   db:
-    image: mariadb
+    image: mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: yes
-      MYSQL_DATABASE: express
-      MYSQL_USER: express
-      MYSQL_PASSWORD: express
+      MYSQL_DATABASE: expressdb
+      MYSQL_USER: expressuser
+      MYSQL_PASSWORD: expresspassword
     volumes:
-      - "./docker/mariadb/data:/var/lib/mariadb"
+      - "./docker/mariadb/data:/var/lib/mysql"
     ports:
-      - 3000:3306
+      - 3306:3306
     healthcheck:
       test: "/usr/bin/mysql --user=expressuser --password=expresspassword --execute \"SHOW DATABASES;\""
       interval: 15s
