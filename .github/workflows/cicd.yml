@@ -51,6 +51,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_STABLE }} "\
+          cd final-test-Alice-aa-a && \
           sudo docker compose -f docker-compose.yml up --pull always -d"
 
   deploy-development:
@@ -66,6 +67,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
+          cd final-test-Alice-aa-a && \
           sudo docker compose -f docker-compose.yml up --pull always -d"
 
   lint:
