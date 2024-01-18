@@ -1,0 +1,15 @@
+#ansible/playbook.yml
+---
+- name: Update web servers
+  hosts: webservers
+  remote_user: admin
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: Install Docker
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+
