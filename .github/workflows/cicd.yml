@@ -76,3 +76,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm audit --audit-level=high
+
+  notification:
+    needs: [ deploy-development ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Shoutrrr
+        uses: containrrr/shoutrrr-action@v1
+        with:
+            url: ${{ secrets.SHOUTRRR_URL }}
+            title: Deployed ${{ github.sha }}
+            message: See changes at ${{ github.event.compare }}.
