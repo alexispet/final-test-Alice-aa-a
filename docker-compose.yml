@@ -20,9 +20,9 @@ services:
       - ".:/app"
     command: [ "npm", "run", "start" ]
   db:
-    image: mysql
+    image: mariadb
     environment:
-      MYSQL_RANDOM_ROOT_PASSWORD: no
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
       MYSQL_DATABASE: express
       MYSQL_USER: express
       MYSQL_PASSWORD: express

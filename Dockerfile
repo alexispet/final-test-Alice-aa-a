@@ -3,12 +3,12 @@ FROM node:21.5.0-alpine3.19 AS build
 COPY . /app/
 WORKDIR /app
 
-RUN npm i
+RUN npm ci
 #RUN npm run start
 
 FROM node:21.5.0-alpine3.19 AS express
 
-LABEL org.opencontainers.image.source https://github.com/users/Alice-aa-a/packages/container/package/ceci-tp-express
+LABEL org.opencontainers.image.source https://github.com/alexispet/final-test-Alice-aa-a.git
 
 
 COPY --from=build /app/package.json .
