@@ -44,15 +44,21 @@ jobs:
       url: https://ec2-52-91-175-63.compute-1.amazonaws.com:3000
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.8.0
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
-      - run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-#      - run: |
-#          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
-#          cd final-test-Alice-aa-a && \
-#          sudo docker compose -f docker-compose.yml up -d --pull always"
+      - name: SSH into the server and deploy
+        run: |
+            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+            cd final-test-Alice-aa-a && \
+            sudo docker compose -f docker-compose.yml up -d --pull always"
+      - name: Stop SSH agent
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          command: 'kill'
 
   lint:
     runs-on: ubuntu-latest
