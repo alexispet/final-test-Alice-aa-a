@@ -31,7 +31,7 @@ services:
       - 3306:3306
     healthcheck:
       test: "/usr/bin/mysql --user=expressuser --password=expresspassword --execute \"SHOW DATABASES;\""
-      interval: 15s
+      interval: 1m
       timeout: 60s
       retries: 10
       start_period: 30s
