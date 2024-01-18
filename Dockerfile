@@ -10,9 +10,7 @@ FROM node:21.5.0-alpine3.19 AS express
 
 LABEL org.opencontainers.image.source https://github.com/alexispet/final-test-Alice-aa-a
 
-
-COPY --from=build /app/package.json .
-COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app .
 
 EXPOSE 3000
 
