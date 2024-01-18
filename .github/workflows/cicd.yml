@@ -41,7 +41,7 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: https://ec2-52-91-175-63.compute-1.amazonaws.com:3000
+      url: https://ec2-52-91-175-63.compute-1.amazonaws.com:4000
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -55,6 +55,7 @@ jobs:
             ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
             cd final-test-Alice-aa-a && \
             sudo docker compose -f docker-compose.yml up -d --pull always"
+
       - name: Stop SSH agent
         uses: webfactory/ssh-agent@v0.8.0
         with:

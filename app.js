@@ -2,7 +2,7 @@ import express from 'express';
 import mariadb from 'mariadb';
 
 const app = express();
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 4000;
 
 // Configurations de la base de données
 const pool = mariadb.createPool({
