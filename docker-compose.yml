@@ -5,6 +5,7 @@ services:
       #      choose image : next
       target: express
     environment:
+      #      stable or unstable
       NODE_ENV: development
       MYSQL_RANDOM_ROOT_PASSWORD: yes
       MYSQL_DATABASE: expressdb
