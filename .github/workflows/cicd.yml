@@ -47,10 +47,11 @@ jobs:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
-      - run: |
-          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
-          cd final-test-Alice-aa-a && \
-          sudo docker compose -f docker-compose.yml up -d --pull always"
+      - run: ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "cd final-test-Alice-aa-a"
+#      - run: |
+#          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
+#          cd final-test-Alice-aa-a && \
+#          sudo docker compose -f docker-compose.yml up -d --pull always"
 
   lint:
     runs-on: ubuntu-latest
