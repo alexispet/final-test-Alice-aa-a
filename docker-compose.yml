@@ -8,9 +8,9 @@ services:
       #      stable or unstable
       NODE_ENV: development
       MYSQL_RANDOM_ROOT_PASSWORD: yes
-      MYSQL_DATABASE: expressdb
-      MYSQL_USER: expressuser
-      MYSQL_PASSWORD: expresspassword
+      MYSQL_DATABASE: express
+      MYSQL_USER: express
+      MYSQL_PASSWORD: express
     ports:
       - "3000:3000"
     depends_on:
@@ -20,21 +20,21 @@ services:
       - ".:/app"
     command: [ "npm", "run", "start" ]
   db:
-    image: mariadb
+    image: mysql
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: no
-      MYSQL_DATABASE: cesi_tp
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: express
+      MYSQL_USER: express
+      MYSQL_PASSWORD: express
     volumes:
       - "./docker/mariadb/data:/var/lib/mariadb"
     ports:
       - 3000:3300
     healthcheck:
-      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      test: "/usr/bin/mysql --user=express --password=express --execute \"SHOW DATABASES;\""
       interval: 1m30s
       timeout: 30s
-      retries: 5
+      retries: 10
       start_period: 30s
   adminer:
     image: adminer
