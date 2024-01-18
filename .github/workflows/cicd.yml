@@ -26,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY  }}/${{ env.IMAGE_NAME  }}/next
+          images: ${{ env.REGISTRY  }}/${{ env.IMAGE_NAME  }}/express
 
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -51,8 +51,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_STABLE }} "\
-          cd prod && \
-          sudo docker compose -f docker-compose.prod.yml up --pull always -d"
+          sudo docker compose -f docker-compose.yml up --pull always -d"
 
   deploy-development:
     needs: [build-and-push-image]
@@ -67,8 +66,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
-          cd dev && \
-          sudo docker compose -f docker-compose.dev.yml up --pull always -d"
+          sudo docker compose -f docker-compose.yml up --pull always -d"
 
   lint:
     runs-on: ubuntu-latest
