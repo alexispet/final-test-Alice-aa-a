@@ -26,8 +26,8 @@ services:
       MYSQL_DATABASE: expressdb
       MYSQL_USER: expressuser
       MYSQL_PASSWORD: expresspassword
-    volumes:
-      - "./docker/mariadb/data:/var/lib/mysql"
+#    volumes:
+#      - "./docker/mariadb/data:/var/lib/mysql"
     ports:
       - 3300:3300
     healthcheck:
