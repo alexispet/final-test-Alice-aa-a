@@ -50,7 +50,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_STABLE }} "\
           cd prod && \
           sudo docker compose -f docker-compose.prod.yml up --pull always -d"
 
@@ -66,7 +66,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST_UNSTABLE }} "\
           cd dev && \
           sudo docker compose -f docker-compose.dev.yml up --pull always -d"
 
