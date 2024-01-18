@@ -34,7 +34,7 @@ services:
       test: "/usr/bin/mysql --user=express --password=express --execute \"SHOW DATABASES;\""
       interval: 1m30s
       timeout: 30s
-      retries: 10
+      retries: 20
       start_period: 30s
   adminer:
     image: adminer
