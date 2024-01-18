@@ -29,12 +29,12 @@ services:
     volumes:
       - "./docker/mariadb/data:/var/lib/mariadb"
     ports:
-      - 3000:3300
+      - 3000:3306
     healthcheck:
-      test: "/usr/bin/mysql --user=express --password=express --execute \"SHOW DATABASES;\""
-      interval: 1m30s
+      test: "/usr/bin/mysql --user=expressuser --password=expresspassword --execute \"SHOW DATABASES;\""
+      interval: 15s
       timeout: 30s
-      retries: 20
+      retries: 10
       start_period: 30s
   adminer:
     image: adminer
