@@ -31,7 +31,7 @@ services:
     ports:
       - 3000:3300
     healthcheck:
-      test: "/usr/bin/mysql --user=expressuser --password=expresspassword --execute \"SHOW DATABASES;\""
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
       interval: 1m30s
       timeout: 30s
       retries: 5
