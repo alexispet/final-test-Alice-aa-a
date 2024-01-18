@@ -41,7 +41,7 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: https://ec2-52-91-175-63.compute-1.amazonaws.com:4000
+      url: https://ec2-52-91-175-63.compute-1.amazonaws.com:3000
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
