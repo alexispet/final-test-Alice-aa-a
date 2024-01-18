@@ -13,13 +13,14 @@ services:
       DB_DATABASE: expressdb
     ports:
       - "3000:3000"
+    command: ["npm", "run", "start"]
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ".:/app"
   db:
-    image: mysql
+    image: mariadb:11.2.2
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: yes
       MYSQL_DATABASE: expressdb
@@ -28,7 +29,7 @@ services:
     volumes:
       - "./docker/mariadb/data:/var/lib/mysql"
     ports:
-      - 3306:3306
+      - 3300:3300
     healthcheck:
       test: "/usr/bin/mysql --user=expressuser --password=expresspassword --execute \"SHOW DATABASES;\""
       interval: 1m
