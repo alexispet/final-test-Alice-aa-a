@@ -8,7 +8,7 @@ RUN npm ci
 
 FROM node:21.5.0-alpine3.19 AS express
 
-LABEL org.opencontainers.image.source https://github.com/alexispet/final-test-Alice-aa-a
+LABEL org.opencontainers.image.source ghcr.io/alexispet/final-test-alice-aa-a/express:main
 
 COPY --from=build /app .
 
