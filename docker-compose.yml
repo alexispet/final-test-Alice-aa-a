@@ -17,6 +17,8 @@ services:
       - "3000:3000"
 #      - prod
 #      - 80:3000
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     command: ["npm", "run", "start"]
     depends_on:
       db:
