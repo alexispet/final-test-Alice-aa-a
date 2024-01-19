@@ -48,8 +48,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
-          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
-          cd final-test-Alice-aa-a"
+          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
       - run:
           sudo docker compose -f docker-compose.yml up -d --pull always
 
