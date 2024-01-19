@@ -1,5 +1,8 @@
 import express from 'express';
 import mariadb from 'mariadb';
+import * as dotenv from 'dotenv'
+
+dotenv.config();
 
 const app = express();
 let port = process.env.PORT || 3000;
