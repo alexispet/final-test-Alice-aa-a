@@ -1,15 +1,40 @@
-#ansible/playbook.yml
 ---
-- name: Update web servers
+- name: Update web servers and Install Docker
   hosts: webservers
   remote_user: admin
   become: true
   become_method: sudo
 
   tasks:
-    - name: Install Docker
+    - name: Update apt package cache
       apt:
         update_cache: yes
-        name: docker.io
+
+    - name: Install required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
         state: present
 
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes

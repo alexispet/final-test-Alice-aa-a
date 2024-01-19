@@ -39,7 +39,7 @@ jobs:
 
   deploy-development:
     runs-on: ubuntu-latest
-    needs: [build-and-push-image]
+    needs: [build-and-push-image, lint]
     if: github.ref_name == 'main'
     environment:
       name: development
