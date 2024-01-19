@@ -23,7 +23,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   express:
-    image: ghcr.io/alexispet/final-test-alice-aa-a/express:main
+    image: ghcr.io/alexispet/final-test-alice-aa-a/express:stable
     restart: always
     labels:
       - "traefik.enable=true"
