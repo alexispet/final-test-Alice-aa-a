@@ -44,60 +44,29 @@ jobs:
     environment:
       name: development
       url: http://ec2-34-207-128-140.compute-1.amazonaws.com:3000
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+      - uses: webfactory/ssh-agent@v0.8.0
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/express
-      - name: Build and push Docker
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          cd final-test-Alice-aa-a && \
+          sudo docker compose -f docker-compose.yml up --pull always -d"
   deploy-stable:
     runs-on: ubuntu-latest
     needs: [build-and-push-image, lint]
     if: github.ref_name == 'stable'
     environment:
-      name: stable
-      url: http://ec2-44-202-87-3.compute-1.amazonaws.com:80
-    permissions:
-      contents: read
-      packages: write
+      name: development
+      url: https://ec2-44-202-87-3.compute-1.amazonaws.com:80
     steps:
-      - uses: actions/checkout@v4
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+      - uses: webfactory/ssh-agent@v0.8.0
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/express
-      - name: Build and push Docker
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          cd final-test-Alice-aa-a && \
+          sudo docker compose -f docker-compose.prod.yml up --pull always -d"
 
   lint:
     runs-on: ubuntu-latest
