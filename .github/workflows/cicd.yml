@@ -58,7 +58,7 @@ jobs:
     if: github.ref_name == 'stable'
     environment:
       name: development
-      url: https://ec2-44-202-87-3.compute-1.amazonaws.com:80
+      url: http://ec2-44-202-87-3.compute-1.amazonaws.com:80
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
