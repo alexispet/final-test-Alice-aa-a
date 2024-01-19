@@ -24,7 +24,7 @@ services:
     #      target: express
     env_file: .env
     environment:
-      NODE_ENV: development
+      NODE_ENV: stable
     ports:
       #     dev
 #      - 3000:3000
