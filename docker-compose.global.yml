@@ -1,26 +1,9 @@
----
 services:
   watchtower:
      image: containrrr/watchtower
      volumes:
        - /var/run/docker.sock:/var/run/docker.sock
      command: --interval 30 --label-enable
-
-  traefik:
-    image: "traefik:v2.6"
-    container_name: "traefik"
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.main.address=:3000"
-    ports:
-      - "80:80"
-      - "3000:3000"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   express:
     image: ghcr.io/alexispet/final-test-alice-aa-a/express:stable
