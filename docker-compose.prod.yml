@@ -1,0 +1,48 @@
+---
+services:
+  db:
+    image: mariadb:11.2.2
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 20s
+      retries: 10
+  express:
+    image: ghcr.io/alexispet/final-test-alice-aa-a/express:main
+    depends_on:
+      - db
+    #      build:
+    #      context: .
+    #      #      choose image : next
+    #      target: express
+    env_file: .env
+    environment:
+      NODE_ENV: development
+    ports:
+      #     dev
+#      - 3000:3000
+#       prod
+      - 80:3000
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+#    command: ["npm", "run", "start"]
+    volumes:
+      - ".:/app"
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30 --label-enable

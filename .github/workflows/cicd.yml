@@ -42,7 +42,7 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: https://ec2-52-91-175-63.compute-1.amazonaws.com:3000
+      url: https://ec2-107-22-131-210.compute-1.amazonaws.com:3000
     runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
@@ -52,6 +52,21 @@ jobs:
           ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
           cd final-test-Alice-aa-a && \
           sudo docker compose -f docker-compose.yml up --pull always -d"
+  deploy-stable:
+    needs: [build-and-push-image]
+    if: github.ref_name == 'stable'
+    environment:
+      name: development
+      url: https://ec2-18-207-242-30.compute-1.amazonaws.com:80
+    runs-on: ubuntu-latest
+    steps:
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: |
+          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          cd final-test-Alice-aa-a && \
+          sudo docker compose -f docker-compose.prod.yml up --pull always -d"
 
   lint:
     runs-on: ubuntu-latest
