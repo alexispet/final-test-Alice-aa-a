@@ -28,28 +28,28 @@ services:
       DB_DATABASE: ${DB_DATABASE}
 #    networks:
 #      - custom_frontend
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      - "traefik.enable=true"
-      - "traefik.http.routers.next-prod.rule=Host(`ec2-44-204-232-48.compute-1.amazonaws.com`)"
-      - "traefik.http.routers.next-prod.entrypoints=main"
+#    labels:
+#      - "com.centurylinklabs.watchtower.enable=true"
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.next-prod.rule=Host(`ec2-44-204-232-48.compute-1.amazonaws.com`)"
+#      - "traefik.http.routers.next-prod.entrypoints=main"
 #    command: ["npm", "run", "start"]
     volumes:
       - ".:/app"
 
-  traefik:
-    image: "traefik:v2.10"
-    container_name: "traefik"
-    command:
-      - "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.main.address=:3000"
-    ports:
-      - "3000:3000"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#  traefik:
+#    image: "traefik:v2.10"
+#    container_name: "traefik"
+#    command:
+#      - "--log.level=DEBUG"
+#      - "--api.insecure=true"
+#      - "--providers.docker=true"
+#      - "--providers.docker.exposedbydefault=false"
+#      - "--entrypoints.main.address=:3000"
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   adminer:
     image: adminer

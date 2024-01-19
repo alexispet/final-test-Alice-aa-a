@@ -5,10 +5,10 @@ services:
        - /var/run/docker.sock:/var/run/docker.sock
      command: --interval 30 --label-enable
 
-  express:
-    image: ghcr.io/alexispet/final-test-alice-aa-a/express:stable
-    restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.whoami.entrypoints=main"
+#  express:
+#    image: ghcr.io/alexispet/final-test-alice-aa-a/express:stable
+#    restart: always
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.whoami.rule=PathPrefix(`/`)"
+#      - "traefik.http.routers.whoami.entrypoints=main"
