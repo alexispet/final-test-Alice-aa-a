@@ -28,4 +28,4 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.whoami.entrypoints=main"
