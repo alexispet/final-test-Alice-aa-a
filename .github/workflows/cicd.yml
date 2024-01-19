@@ -44,7 +44,6 @@ jobs:
     environment:
       name: development
       url: https://ec2-34-207-128-140.compute-1.amazonaws.com:3000
-    runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -60,7 +59,6 @@ jobs:
     environment:
       name: development
       url: https://ec2-44-202-87-3.compute-1.amazonaws.com:80
-    runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
