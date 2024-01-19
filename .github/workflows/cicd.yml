@@ -1,3 +1,4 @@
+---
 name: Docker
 run-name: ${{ github.actor }} is testing GitHub Actions
 on: [push]
@@ -75,7 +76,7 @@ jobs:
       - run: npm audit --audit-level=high
 
   notification:
-    needs: [ deploy-development ]
+    needs: [deploy-development]
     runs-on: ubuntu-latest
     steps:
       - name: Shoutrrr
