@@ -3,19 +3,18 @@ name: Lighthouse CI
 on:
   schedule:
     - cron: '0 0 * * *'
-  push:
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Audit URL using Lighthouse
         uses: treosh/lighthouse-ci-action@v9
         id: lighthouse
         with:
           urls: |
-            ec2-107-22-131-210.compute-1.amazonaws.com
-            ec2-18-207-242-30.compute-1.amazonaws.com
+            https://ec2-107-22-131-210.compute-1.amazonaws.com
+            https://ec2-18-207-242-30.compute-1.amazonaws.com
           temporaryPublicStorage: true
