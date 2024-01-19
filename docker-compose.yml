@@ -34,7 +34,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
-      - "traefik.http.routers.next-prod.rule=Host(`ec2-107-22-131-210.compute-1.amazonaws.com`)"
+      - "traefik.http.routers.next-prod.rule=Host(`ec2-34-207-128-140.compute-1.amazonaws.com`)"
       - "traefik.http.routers.next-prod.entrypoints=web"
 #    command: ["npm", "run", "start"]
     volumes:
