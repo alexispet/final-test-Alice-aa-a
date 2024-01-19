@@ -43,13 +43,13 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: https://ec2-34-207-128-140.compute-1.amazonaws.com:3000
+      url: http://ec2-34-207-128-140.compute-1.amazonaws.com:3000
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
-          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
           cd final-test-Alice-aa-a && \
           sudo docker compose -f docker-compose.yml up --pull always -d"
   deploy-stable:
@@ -64,7 +64,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
       - run: |
-          ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
           cd final-test-Alice-aa-a && \
           sudo docker compose -f docker-compose.prod.yml up --pull always -d"
 
