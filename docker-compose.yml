@@ -18,10 +18,6 @@ services:
     image: ghcr.io/alexispet/final-test-alice-aa-a/express:main
     depends_on:
       - db
-    #      build:
-    #      context: .
-    #      #      choose image : next
-    #      target: express
     env_file: .env
     environment:
       NODE_ENV: development
@@ -52,6 +48,5 @@ services:
     command: --interval 30 --label-enable
 
 networks:
-  frontend:
+  custom_frontend:
     external: true
-    name: custom_frontend

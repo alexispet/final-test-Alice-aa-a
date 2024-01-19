@@ -52,6 +52,5 @@ services:
     command: --interval 30 --label-enable
 
 networks:
-  frontend:
+  custom_frontend:
     external: true
-    name: custom_frontend
