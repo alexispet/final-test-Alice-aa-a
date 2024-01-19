@@ -1,4 +1,3 @@
----
 services:
   db:
     image: mariadb:11.2.2
@@ -7,6 +6,8 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - "./docker/mariadb/data:/var/lib/mysql"
     ports:
       - 3306:3306
     healthcheck:
@@ -35,6 +36,20 @@ services:
 #    command: ["npm", "run", "start"]
     volumes:
       - ".:/app"
+
+  traefik:
+    image: "traefik:v2.10"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.main.address=:3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   adminer:
     image: adminer
