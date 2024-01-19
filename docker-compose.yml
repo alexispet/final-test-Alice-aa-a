@@ -25,8 +25,8 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
-    networks:
-      - custom_frontend
+#    networks:
+#      - custom_frontend
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
@@ -46,7 +46,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 30 --label-enable
-
-networks:
-  custom_frontend:
-    external: true
+#
+#networks:
+#  custom_frontend:
+#    external: true
