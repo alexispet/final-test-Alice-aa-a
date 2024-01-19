@@ -2,7 +2,7 @@
 
 echo "Execution du docker entrypoint"
 
-if ["$NODE_ENV" == "development"]
+if [ "$NODE_ENV" == "development" ]
 then
   echo "dev ok"
   npm install

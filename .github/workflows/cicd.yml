@@ -115,6 +115,7 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
   dependency-audit:
     runs-on: ubuntu-latest
     steps:
