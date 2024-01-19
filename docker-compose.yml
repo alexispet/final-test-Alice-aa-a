@@ -29,11 +29,6 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_DATABASE: ${DB_DATABASE}
-    ports:
-      #     dev
-      - 3000:3000
-    #      - prod
-    #      - 80:3000
     networks:
       - custom_frontend
     labels:
