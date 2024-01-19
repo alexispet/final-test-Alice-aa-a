@@ -34,11 +34,17 @@ services:
 #      - 3000:3000
 #       prod
       - 80:3000
+    networks:
+      - custom_frontend
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.next-prod.rule=Host(`ec2-18-207-242-30.compute-1.amazonaws.com`)"
+      - "traefik.http.routers.next-prod.entrypoints=web"
 #    command: ["npm", "run", "start"]
     volumes:
       - ".:/app"
+
 
   adminer:
     image: adminer
@@ -50,3 +56,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 30 --label-enable
+
+networks:
+  frontend:
+    external: true
+      name: custom_frontend
