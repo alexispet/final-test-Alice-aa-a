@@ -15,6 +15,6 @@ jobs:
         id: lighthouse
         with:
           urls: |
-            https://ec2-107-22-131-210.compute-1.amazonaws.com
-            https://ec2-18-207-242-30.compute-1.amazonaws.com
+            https://ec2-44-204-232-48.compute-1.amazonaws.com
+            https://ec2-35-172-134-44.compute-1.amazonaws.com
           temporaryPublicStorage: true

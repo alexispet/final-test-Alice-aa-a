@@ -43,7 +43,7 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: http://ec2-34-207-128-140.compute-1.amazonaws.com:3000
+      url: http://ec2-44-204-232-48.compute-1.amazonaws.com:3000
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -58,7 +58,7 @@ jobs:
     if: github.ref_name == 'stable'
     environment:
       name: development
-      url: http://ec2-44-202-87-3.compute-1.amazonaws.com:80
+      url: http://ec2-35-172-134-44.compute-1.amazonaws.com:80
     steps:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
