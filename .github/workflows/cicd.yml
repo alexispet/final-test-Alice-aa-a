@@ -50,7 +50,7 @@ jobs:
       - run: |
           ssh -vvv -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "\
           cd final-test-Alice-aa-a && \
-          ls"
+          sudo docker compose -f docker-compose.yml up --pull always -d"
 
   lint:
     runs-on: ubuntu-latest
