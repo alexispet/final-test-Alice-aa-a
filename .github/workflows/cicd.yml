@@ -43,7 +43,7 @@ jobs:
     if: github.ref_name == 'main'
     environment:
       name: development
-      url: https://ec2-107-22-131-210.compute-1.amazonaws.com:3000
+      url: https://ec2-34-207-128-140.compute-1.amazonaws.com:3000
     permissions:
       contents: read
       packages: write
@@ -74,7 +74,7 @@ jobs:
     if: github.ref_name == 'stable'
     environment:
       name: stable
-      url: https://ec2-18-207-242-30.compute-1.amazonaws.com:80
+      url: https://ec2-44-202-87-3.compute-1.amazonaws.com:80
     permissions:
       contents: read
       packages: write
