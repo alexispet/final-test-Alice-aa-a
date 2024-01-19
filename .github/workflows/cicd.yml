@@ -91,7 +91,7 @@ jobs:
       - run: npm audit --audit-level=high
 
   notification:
-    needs: [deploy-development]
+    needs: [deploy-stable]
     runs-on: ubuntu-latest
     steps:
       - name: Shoutrrr
