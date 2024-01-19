@@ -51,12 +51,6 @@ services:
     ports:
       - 8081:8080
 
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30 --label-enable
-
 networks:
   frontend:
     external: true
