@@ -54,4 +54,4 @@ services:
 networks:
   frontend:
     external: true
-      name: custom_frontend
+    name: custom_frontend
