@@ -56,7 +56,7 @@ jobs:
     needs: [build-and-push-image]
     if: github.ref_name == 'stable'
     environment:
-      name: development
+      name: stable
       url: https://ec2-18-207-242-30.compute-1.amazonaws.com:80
     runs-on: ubuntu-latest
     steps:
