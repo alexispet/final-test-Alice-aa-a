@@ -1,8 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/OlYrOqbl)
-# Y Social network API
+# Y Social network API : Alice Abraham
 
 Production URL: ec2-18-207-242-30.compute-1.amazonaws.com
-Development URL: ec2-107-22-131-210.compute-1.amazonaws.com
+Development URL: ec2-34-207-128-140.compute-1.amazonaws.com
 
 ## Description
 This is the official API for the Y Social Network. 
